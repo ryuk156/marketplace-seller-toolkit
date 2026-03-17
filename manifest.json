@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Marketplace Seller Toolkit",
+  "version": "1.0",
+  "description": "Cross-marketplace price comparison & profit calculator for Best Buy Canada sellers",
+  "permissions": ["activeTab", "storage", "tabs"],
+  "host_permissions": [
+    "https://www.bestbuy.ca/*",
+    "https://www.amazon.ca/*",
+    "https://www.walmart.ca/*",
+    "https://www.newegg.ca/*",
+    "https://www.staples.ca/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.bestbuy.ca/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Marketplace Seller Toolkit"
+  }
+}

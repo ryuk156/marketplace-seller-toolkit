@@ -1,0 +1,558 @@
+/**
+ * Marketplace Seller Toolkit - Dashboard Styles
+ *
+ * Professional dark sidebar + white content area layout.
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f0f2f5;
+  color: #333;
+}
+
+/* ─── Sidebar ─────────────────────────────────────────────────────────────── */
+
+.mst-sidebar {
+  width: 220px;
+  background: #1a1a2e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.mst-sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mst-sidebar-header h1 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #5588ff;
+}
+
+.mst-sidebar-header span {
+  font-size: 11px;
+  opacity: 0.5;
+  letter-spacing: 0.5px;
+}
+
+.mst-sidebar-nav {
+  flex: 1;
+  padding: 12px 0;
+}
+
+.mst-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+
+.mst-nav-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mst-nav-item.mst-active {
+  color: #fff;
+  background: rgba(85, 136, 255, 0.1);
+  border-left-color: #5588ff;
+}
+
+.mst-nav-icon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.mst-sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 11px;
+  opacity: 0.4;
+}
+
+/* ─── Main Content ────────────────────────────────────────────────────────── */
+
+.mst-main {
+  flex: 1;
+  margin-left: 220px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ─── Top Bar ─────────────────────────────────────────────────────────────── */
+
+.mst-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.mst-topbar h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.mst-search-box input {
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  width: 260px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.mst-search-box input:focus {
+  border-color: #0046BE;
+  box-shadow: 0 0 0 2px rgba(0, 70, 190, 0.1);
+}
+
+/* ─── Views ───────────────────────────────────────────────────────────────── */
+
+.mst-view {
+  display: none;
+  padding: 24px;
+}
+
+.mst-view.mst-active {
+  display: block;
+}
+
+/* ─── Stats Cards ─────────────────────────────────────────────────────────── */
+
+.mst-stat-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.mst-stat-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e8e8e8;
+}
+
+.mst-stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a1a2e;
+}
+
+.mst-stat-label {
+  font-size: 11px;
+  color: #888;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Actions Bar ─────────────────────────────────────────────────────────── */
+
+.mst-actions-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.mst-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.mst-btn-primary {
+  background: #0046BE;
+  color: #fff;
+}
+
+.mst-btn-primary:hover {
+  background: #003a9e;
+}
+
+.mst-btn-danger {
+  background: #fff;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+
+.mst-btn-danger:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* ─── Data Table ──────────────────────────────────────────────────────────── */
+
+.mst-table-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+}
+
+.mst-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.mst-table thead {
+  background: #f8f9fa;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.mst-table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #555;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background 0.1s;
+}
+
+.mst-table th:hover {
+  background: #eef0f2;
+}
+
+.mst-sort-icon::after {
+  content: '';
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.mst-table th.mst-sort-asc .mst-sort-icon::after {
+  content: '▲';
+  font-size: 8px;
+}
+
+.mst-table th.mst-sort-desc .mst-sort-icon::after {
+  content: '▼';
+  font-size: 8px;
+}
+
+.mst-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.mst-table tbody tr:hover {
+  background: #f5f8ff;
+}
+
+.mst-table .mst-price-cell {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mst-table .mst-lowest-cell {
+  color: #0a8a2e;
+  font-weight: 700;
+}
+
+.mst-table .mst-na-cell {
+  color: #bbb;
+  font-style: italic;
+}
+
+.mst-table .mst-profit-positive {
+  color: #0a8a2e;
+  font-weight: 600;
+}
+
+.mst-table .mst-profit-negative {
+  color: #d32f2f;
+  font-weight: 600;
+}
+
+.mst-product-name {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Marketplace Price Links ─────────────────────────────────────────────── */
+
+.mst-table a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mst-table a:hover {
+  text-decoration: underline;
+}
+
+.mst-mp-amazon { color: #FF9900; }
+.mst-mp-walmart { color: #0071DC; }
+.mst-mp-newegg { color: #D14905; }
+.mst-mp-staples { color: #CC0000; }
+.mst-mp-bestbuy { color: #0046BE; }
+
+/* ─── Empty State ─────────────────────────────────────────────────────────── */
+
+.mst-empty-state {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.mst-empty-state.mst-visible {
+  display: block;
+}
+
+.mst-empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.mst-empty-state h3 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.mst-empty-state p {
+  color: #999;
+  font-size: 13px;
+}
+
+/* ─── Settings Panel ──────────────────────────────────────────────────────── */
+
+.mst-settings-panel {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e8e8e8;
+  max-width: 600px;
+}
+
+.mst-settings-panel h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.mst-settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.mst-settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mst-settings-field:first-child {
+  grid-column: 1 / -1;
+}
+
+.mst-settings-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mst-settings-field input[type="number"] {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.mst-settings-field input[type="number"]:focus {
+  border-color: #0046BE;
+  box-shadow: 0 0 0 2px rgba(0, 70, 190, 0.1);
+}
+
+.mst-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mst-slider-row input[type="range"] {
+  flex: 1;
+  accent-color: #0046BE;
+}
+
+.mst-slider-row span {
+  font-weight: 700;
+  min-width: 36px;
+  text-align: right;
+}
+
+/* ─── Settings Categories ─────────────────────────────────────────────────── */
+
+.mst-settings-categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.mst-settings-cat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.mst-settings-cat-row:hover {
+  background: #f5f5f5;
+}
+
+.mst-settings-cat-name {
+  font-size: 12px;
+  color: #333;
+  flex: 1;
+}
+
+.mst-settings-cat-input {
+  width: 52px;
+  padding: 3px 6px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: right;
+  outline: none;
+}
+
+.mst-settings-cat-input:focus {
+  border-color: #0046BE;
+}
+
+.mst-settings-cat-pct {
+  font-size: 11px;
+  color: #888;
+}
+
+.mst-settings-saved {
+  margin-left: 12px;
+  font-size: 12px;
+  color: #0a8a2e;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.mst-settings-saved.mst-visible {
+  opacity: 1;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .mst-stat-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mst-settings-categories {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .mst-sidebar {
+    width: 60px;
+  }
+
+  .mst-sidebar-header span,
+  .mst-nav-item span:not(.mst-nav-icon),
+  .mst-sidebar-footer {
+    display: none;
+  }
+
+  .mst-sidebar-header {
+    text-align: center;
+  }
+
+  .mst-sidebar-header h1 {
+    font-size: 16px;
+  }
+
+  .mst-nav-item {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .mst-main {
+    margin-left: 60px;
+  }
+
+  .mst-stat-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mst-settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mst-search-box input {
+    width: 160px;
+  }
+}

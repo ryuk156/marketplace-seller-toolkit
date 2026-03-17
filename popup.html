@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace Seller Toolkit</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 350px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 13px;
+      color: #333;
+      background: #f8f9fa;
+    }
+
+    /* ─── Header ────────────────────────────────── */
+
+    .mst-popup-header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mst-popup-header h1 {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .mst-popup-header .mst-version {
+      font-size: 10px;
+      opacity: 0.6;
+    }
+
+    /* ─── Toggle ────────────────────────────────── */
+
+    .mst-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+
+    .mst-toggle-label {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .mst-toggle {
+      position: relative;
+      width: 42px;
+      height: 22px;
+    }
+
+    .mst-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .mst-toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: #ccc;
+      border-radius: 22px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .mst-toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 2px;
+      bottom: 2px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+
+    .mst-toggle input:checked + .mst-toggle-slider {
+      background: #0046BE;
+    }
+
+    .mst-toggle input:checked + .mst-toggle-slider::before {
+      transform: translateX(20px);
+    }
+
+    /* ─── Section ───────────────────────────────── */
+
+    .mst-section {
+      background: #fff;
+      margin-top: 8px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+
+    .mst-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mst-section-header:hover {
+      background: #f5f5f5;
+    }
+
+    .mst-section-title {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .mst-section-toggle {
+      font-size: 10px;
+      color: #888;
+      transition: transform 0.2s;
+    }
+
+    .mst-section-header.mst-expanded .mst-section-toggle {
+      transform: rotate(180deg);
+    }
+
+    .mst-section-body {
+      display: none;
+      padding: 0 16px 12px;
+    }
+
+    .mst-section-body.mst-open {
+      display: block;
+    }
+
+    /* ─── Form Controls ─────────────────────────── */
+
+    .mst-field {
+      margin-bottom: 10px;
+    }
+
+    .mst-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .mst-field input[type="number"],
+    .mst-field input[type="text"] {
+      width: 100%;
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .mst-field input:focus {
+      border-color: #0046BE;
+      box-shadow: 0 0 0 2px rgba(0, 70, 190, 0.1);
+    }
+
+    .mst-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mst-slider-row input[type="range"] {
+      flex: 1;
+      accent-color: #0046BE;
+    }
+
+    .mst-slider-value {
+      font-weight: 700;
+      font-size: 13px;
+      min-width: 32px;
+      text-align: right;
+    }
+
+    /* ─── Category Commissions ──────────────────── */
+
+    .mst-categories {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+
+    .mst-category-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 8px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 11px;
+    }
+
+    .mst-category-row:last-child {
+      border-bottom: none;
+    }
+
+    .mst-category-name {
+      flex: 1;
+      color: #333;
+    }
+
+    .mst-category-input {
+      width: 50px;
+      padding: 2px 4px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-size: 11px;
+      text-align: right;
+      outline: none;
+    }
+
+    .mst-category-input:focus {
+      border-color: #0046BE;
+    }
+
+    .mst-category-pct {
+      margin-left: 2px;
+      color: #888;
+      font-size: 10px;
+    }
+
+    /* ─── Quick Stats ───────────────────────────── */
+
+    .mst-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .mst-stat-card {
+      background: #f0f4ff;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .mst-stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0046BE;
+    }
+
+    .mst-stat-label {
+      font-size: 10px;
+      color: #666;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── Dashboard Button ──────────────────────── */
+
+    .mst-dashboard-btn {
+      display: block;
+      width: calc(100% - 32px);
+      margin: 12px 16px 16px;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #1a1a2e;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+    }
+
+    .mst-dashboard-btn:hover {
+      background: #2a2a4e;
+    }
+
+    /* ─── Save Status ───────────────────────────── */
+
+    .mst-save-status {
+      text-align: center;
+      font-size: 11px;
+      color: #0a8a2e;
+      padding: 0 16px 8px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .mst-save-status.mst-visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="mst-popup-header">
+    <div>
+      <h1>Marketplace Seller Toolkit</h1>
+      <span class="mst-version">v1.0</span>
+    </div>
+  </div>
+
+  <!-- Enable/Disable Toggle -->
+  <div class="mst-toggle-row">
+    <span class="mst-toggle-label">Extension Enabled</span>
+    <label class="mst-toggle">
+      <input type="checkbox" id="mst-enabled" checked />
+      <span class="mst-toggle-slider"></span>
+    </label>
+  </div>
+
+  <!-- Commission Settings -->
+  <div class="mst-section">
+    <div class="mst-section-header" data-section="commission">
+      <span class="mst-section-title">Commission Settings</span>
+      <span class="mst-section-toggle">&#9660;</span>
+    </div>
+    <div class="mst-section-body" id="commission-body">
+      <div class="mst-field">
+        <label>Default Commission Rate</label>
+        <div class="mst-slider-row">
+          <input type="range" id="mst-default-commission" min="5" max="20" step="0.5" value="10" />
+          <span class="mst-slider-value" id="mst-commission-display">10%</span>
+        </div>
+      </div>
+
+      <div class="mst-field">
+        <label>Category-Specific Rates</label>
+        <div class="mst-categories" id="mst-category-list"></div>
+      </div>
+
+      <div class="mst-field">
+        <label>Monthly Platform Fee ($)</label>
+        <input type="number" id="mst-monthly-fee" value="29.99" step="0.01" min="0" />
+      </div>
+
+      <div class="mst-field">
+        <label>Average Shipping Cost ($)</label>
+        <input type="number" id="mst-shipping-cost" value="0" step="0.01" min="0" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="mst-section">
+    <div class="mst-section-header mst-expanded" data-section="stats">
+      <span class="mst-section-title">Quick Stats (Today)</span>
+      <span class="mst-section-toggle">&#9660;</span>
+    </div>
+    <div class="mst-section-body mst-open" id="stats-body">
+      <div class="mst-stats">
+        <div class="mst-stat-card">
+          <div class="mst-stat-value" id="mst-stat-scanned">0</div>
+          <div class="mst-stat-label">Products Scanned</div>
+        </div>
+        <div class="mst-stat-card">
+          <div class="mst-stat-value" id="mst-stat-comparisons">0</div>
+          <div class="mst-stat-label">Comparisons Made</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mst-save-status" id="mst-save-status">Settings saved!</div>
+
+  <button class="mst-dashboard-btn" id="mst-open-dashboard">
+    Open Full Dashboard
+  </button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
